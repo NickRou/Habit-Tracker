@@ -1,10 +1,7 @@
-import { useState } from "react";
 import "./App.css";
 import CalendarView from "./components/CalendarView/CalendarView";
 
 function App() {
-    const [count, setCount] = useState(0);
-
     const sampleDates = [
         "2024-01-15",
         "2024-02-28",
@@ -24,17 +21,6 @@ function App() {
         <>
             <h1>Habit Tracker</h1>
             <CalendarView dates={sampleDates} />
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
         </>
     );
 }

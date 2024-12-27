@@ -7,8 +7,14 @@ interface CalendarViewProps {
 
 const CalendarView: React.FC<CalendarViewProps> = ({ dates }) => {
     const checkedDates = useMemo(() => {
-        return new Set(dates.map((date) => new Date(date).toDateString()));
+        return new Set(dates.map((date) => {
+            const dateObj = new Date(date);
+            const offset = dateObj.getTimezoneOffset() * 60000;
+            return new Date(dateObj.getTime() + offset).toDateString();
+        }));
     }, [dates]);
+
+    console.log(checkedDates);
 
     const weeks = useMemo(() => {
         const year = new Date().getFullYear();
@@ -37,6 +43,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ dates }) => {
 
     const getClassName = (date: Date) => {
         if (checkedDates.has(date.toDateString())) {
+            console.log(date.toDateString());
             return "cell cell-active";
         }
         return "cell";
@@ -53,7 +60,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ dates }) => {
                                 className={getClassName(day)}
                                 style={{
                                     gridColumn: weekIndex + 1,
-                                    gridRow: dayIndex + 2,
+                                    gridRow: dayIndex + 1,
                                 }}
                             />
                         ))}

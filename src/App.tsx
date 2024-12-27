@@ -1,14 +1,12 @@
-import "./App.css";
-import HabitCard from "./components/HabitCard/HabitCard.tsx";
+import {ThemeProvider} from "@/components/theme-provider.tsx";
 
 function App() {
 
     return (
-        <>
-            <h1>Habit Tracker</h1>
-            <HabitCard title="Walking" description="Days I Walked" />
-            <HabitCard title="Yoga" description="Days I Did Yoga" />
-        </>
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+            {/*<ModeToggle/>*/}
+            <div></div>
+        </ThemeProvider>
     );
 }
 
